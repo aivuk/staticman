@@ -25,7 +25,7 @@ const StaticmanAPI = function () {
 
   this.initialiseWebhookHandler()
   this.initialiseCORS()
-  this.initialiseBruteforceProtection()
+  // this.initialiseBruteforceProtection()
   this.initialiseRoutes()
 }
 
@@ -48,7 +48,7 @@ StaticmanAPI.prototype.initialiseRoutes = function () {
   // Route: connect
   this.server.get(
     '/v:version/connect/:username/:repository',
-    this.bruteforce.prevent,
+    // this.bruteforce.prevent,
     this.requireApiVersion([1, 2]),
     this.controllers.connect
   )
@@ -56,7 +56,7 @@ StaticmanAPI.prototype.initialiseRoutes = function () {
   // Route: process
   this.server.post(
     '/v:version/entry/:username/:repository/:branch',
-    this.bruteforce.prevent,
+    // this.bruteforce.prevent,
     this.requireApiVersion([1, 2]),
     this.requireParams(['fields']),
     this.controllers.process
@@ -64,7 +64,7 @@ StaticmanAPI.prototype.initialiseRoutes = function () {
 
   this.server.post(
     '/v:version/entry/:username/:repository/:branch/:property',
-    this.bruteforce.prevent,
+    // this.bruteforce.prevent,
     this.requireApiVersion([2]),
     this.requireParams(['fields']),
     this.controllers.process
@@ -73,7 +73,7 @@ StaticmanAPI.prototype.initialiseRoutes = function () {
   // Route: encrypt
   this.server.get(
     '/v:version/encrypt/:text',
-    this.bruteforce.prevent,
+    // this.bruteforce.prevent,
     this.requireApiVersion([2]),
     this.controllers.encrypt
   )
